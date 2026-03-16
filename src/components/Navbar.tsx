@@ -17,8 +17,8 @@ export default function Navbar() {
               </span>
             </div>
             <span className="text-xl font-bold tracking-tight text-slate-900">
-              CardWise{" "}
-              <span className="text-primary">Canada</span>
+              CC{" "}
+              <span className="text-primary">Recommender</span>
             </span>
           </div>
 

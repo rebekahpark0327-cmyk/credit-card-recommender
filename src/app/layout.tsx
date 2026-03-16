@@ -9,9 +9,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "CardWise Canada | Find the Best Credit Card for Your Spending",
+  title: "CC Recommender | Find the Best Canadian Credit Card",
   description:
-    "Compare top Canadian credit cards for groceries, gas, dining, and travel. Get personalized recommendations based on your spending habits.",
+    "Compare Canadian credit cards and get personalized recommendations based on your spending habits. Free, open-source, no affiliate links.",
 };
 
 export default function RootLayout({

@@ -4,10 +4,14 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import RecommendationCard from "./RecommendationCard";
 import type { RecommendationResult } from "@/utils/recommendationEngine";
+import type { CreditCard } from "@/data/creditCards";
 
 interface ResultsSectionProps {
   results: RecommendationResult[];
   onEditProfile: () => void;
+  compareCards: CreditCard[];
+  onToggleCompare: (card: CreditCard) => void;
+  maxCompare: number;
 }
 
 type FilterTab =
@@ -37,6 +41,9 @@ const sortOptions: { id: SortMode; label: string }[] = [
 export default function ResultsSection({
   results,
   onEditProfile,
+  compareCards,
+  onToggleCompare,
+  maxCompare,
 }: ResultsSectionProps) {
   const [activeTab, setActiveTab] = useState<FilterTab>("best_overall");
   const [sortMode, setSortMode] = useState<SortMode>("net_value");
@@ -85,6 +92,8 @@ export default function ResultsSection({
   const displayResults = showAllCards
     ? filteredAndSorted
     : filteredAndSorted.slice(0, 5);
+
+  const compareCardIds = new Set(compareCards.map((c) => c.id));
 
   if (results.length === 0) return null;
 
@@ -208,6 +217,9 @@ export default function ResultsSection({
                 result={result}
                 rank={index + 1}
                 index={index}
+                isComparing={compareCardIds.has(result.card.id)}
+                onToggleCompare={() => onToggleCompare(result.card)}
+                compareFull={compareCards.length >= maxCompare}
               />
             ))
           ) : (

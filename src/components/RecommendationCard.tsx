@@ -7,6 +7,9 @@ interface RecommendationCardProps {
   result: RecommendationResult;
   rank: number;
   index: number;
+  isComparing: boolean;
+  onToggleCompare: () => void;
+  compareFull: boolean;
 }
 
 const issuerColors: Record<string, string> = {
@@ -22,7 +25,6 @@ const issuerColors: Record<string, string> = {
   "PC Financial": "text-red-600",
   "Canadian Tire": "text-red-600",
   "National Bank": "text-red-600",
-  HSBC: "text-red-600",
   "Capital One": "text-blue-700",
   "Neo Financial": "text-blue-600",
   "Home Trust": "text-teal-600",
@@ -32,6 +34,9 @@ export default function RecommendationCard({
   result,
   rank,
   index,
+  isComparing,
+  onToggleCompare,
+  compareFull,
 }: RecommendationCardProps) {
   const { card, yearlyRewards, netValue, matchReason } = result;
   const isTopPick = rank === 1;
@@ -43,9 +48,11 @@ export default function RecommendationCard({
   return (
     <motion.div
       className={`group bg-white rounded-xl overflow-hidden flex flex-col lg:flex-row relative ${
-        isTopPick
-          ? "border-2 border-primary shadow-lg"
-          : "border border-slate-200 shadow-sm hover:shadow-md"
+        isComparing
+          ? "border-2 border-blue-500 shadow-lg shadow-blue-500/10 ring-1 ring-blue-500/20"
+          : isTopPick
+            ? "border-2 border-primary shadow-lg"
+            : "border border-slate-200 shadow-sm hover:shadow-md"
       } transition-shadow`}
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
@@ -61,6 +68,13 @@ export default function RecommendationCard({
       >
         {matchPercent}% Match
       </div>
+
+      {isComparing && (
+        <div className="absolute top-0 left-0 bg-blue-500 text-white text-[10px] uppercase tracking-widest font-black px-3 py-1 rounded-br-lg flex items-center gap-1 z-10">
+          <span className="material-symbols-outlined text-xs">check_circle</span>
+          Comparing
+        </div>
+      )}
 
       <div className="lg:w-1/3 p-8 flex items-center justify-center bg-slate-50">
         {card.imageUrl ? (
@@ -188,17 +202,20 @@ export default function RecommendationCard({
           <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            className="flex-1 min-w-[140px] bg-white border border-slate-200 text-slate-700 font-bold py-3 px-6 rounded-lg hover:bg-slate-50 transition-all flex items-center justify-center gap-2"
-            onClick={() =>
-              document
-                .getElementById("comparison")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
+            onClick={onToggleCompare}
+            disabled={!isComparing && compareFull}
+            className={`flex-1 min-w-[140px] font-bold py-3 px-6 rounded-lg transition-all flex items-center justify-center gap-2 ${
+              isComparing
+                ? "bg-blue-500 text-white hover:bg-blue-600"
+                : compareFull
+                  ? "bg-slate-100 border border-slate-200 text-slate-400 cursor-not-allowed"
+                  : "bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
+            }`}
           >
             <span className="material-symbols-outlined text-sm">
-              compare_arrows
+              {isComparing ? "check_circle" : "compare_arrows"}
             </span>
-            Compare
+            {isComparing ? "Added" : compareFull ? "Max Reached" : "Compare"}
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.1 }}
