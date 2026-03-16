@@ -1,0 +1,230 @@
+export interface CreditCard {
+  id: string;
+  name: string;
+  issuer: string;
+  category: string;
+  annualFee: number;
+  monthlyFee?: number;
+  welcomeBonus: string;
+  welcomeBonusValue: number;
+  rewardRates: {
+    groceries: number;
+    gas: number;
+    dining: number;
+    travel: number;
+    other: number;
+  };
+  rewardType: "cashback" | "travel" | "store";
+  incomeRequirement: number;
+  creditScoreMin: number;
+  foreignExchangeFee: string;
+  bestCategory: string;
+  cardGradient: string;
+  cardLabel: string;
+  cardNumber: string;
+  cardIcon: string;
+}
+
+export const creditCards: CreditCard[] = [
+  {
+    id: "amex-cobalt",
+    name: "American Express Cobalt® Card",
+    issuer: "AMERICAN EXPRESS",
+    category: "Travel & Dining",
+    annualFee: 155.88,
+    monthlyFee: 12.99,
+    welcomeBonus: "30,000 pts",
+    welcomeBonusValue: 300,
+    rewardRates: {
+      groceries: 0.05,
+      gas: 0.02,
+      dining: 0.05,
+      travel: 0.02,
+      other: 0.01,
+    },
+    rewardType: "travel",
+    incomeRequirement: 0,
+    creditScoreMin: 660,
+    foreignExchangeFee: "2.5%",
+    bestCategory: "Dining & Grocery",
+    cardGradient: "from-slate-800 to-black",
+    cardLabel: "COBALT",
+    cardNumber: "•••• •••• •••• 8821",
+    cardIcon: "hub",
+  },
+  {
+    id: "rbc-avion",
+    name: "RBC Avion Visa Infinite",
+    issuer: "RBC ROYAL BANK",
+    category: "Travel & Lifestyle",
+    annualFee: 120,
+    welcomeBonus: "55,000 pts",
+    welcomeBonusValue: 550,
+    rewardRates: {
+      groceries: 0.01,
+      gas: 0.01,
+      dining: 0.01,
+      travel: 0.015,
+      other: 0.01,
+    },
+    rewardType: "travel",
+    incomeRequirement: 60000,
+    creditScoreMin: 700,
+    foreignExchangeFee: "2.5%",
+    bestCategory: "Travel Bookings",
+    cardGradient: "from-red-700 to-red-900",
+    cardLabel: "AVION",
+    cardNumber: "•••• •••• •••• 4492",
+    cardIcon: "account_balance",
+  },
+  {
+    id: "td-cashback",
+    name: "TD Cash Back Visa Infinite*",
+    issuer: "TD CANADA TRUST",
+    category: "Everyday Spending",
+    annualFee: 139,
+    welcomeBonus: "$200 back",
+    welcomeBonusValue: 200,
+    rewardRates: {
+      groceries: 0.03,
+      gas: 0.03,
+      dining: 0.02,
+      travel: 0.01,
+      other: 0.01,
+    },
+    rewardType: "cashback",
+    incomeRequirement: 60000,
+    creditScoreMin: 680,
+    foreignExchangeFee: "2.5%",
+    bestCategory: "Gas & Recurring Bills",
+    cardGradient: "from-emerald-600 to-emerald-900",
+    cardLabel: "CASHBACK",
+    cardNumber: "•••• •••• •••• 1105",
+    cardIcon: "payments",
+  },
+  {
+    id: "scotiabank-gold",
+    name: "Scotiabank Gold American Express",
+    issuer: "SCOTIABANK",
+    category: "Grocery & Transit",
+    annualFee: 120,
+    welcomeBonus: "40,000 pts",
+    welcomeBonusValue: 400,
+    rewardRates: {
+      groceries: 0.06,
+      gas: 0.03,
+      dining: 0.05,
+      travel: 0.03,
+      other: 0.01,
+    },
+    rewardType: "travel",
+    incomeRequirement: 12000,
+    creditScoreMin: 660,
+    foreignExchangeFee: "0%",
+    bestCategory: "Grocery & Transit",
+    cardGradient: "from-yellow-500 to-amber-700",
+    cardLabel: "GOLD",
+    cardNumber: "•••• •••• •••• 3301",
+    cardIcon: "star",
+  },
+  {
+    id: "td-first-class",
+    name: "TD First Class Travel Visa Infinite",
+    issuer: "TD CANADA TRUST",
+    category: "Travel Booking",
+    annualFee: 139,
+    welcomeBonus: "115,000 pts",
+    welcomeBonusValue: 575,
+    rewardRates: {
+      groceries: 0.06,
+      gas: 0.045,
+      dining: 0.06,
+      travel: 0.09,
+      other: 0.03,
+    },
+    rewardType: "travel",
+    incomeRequirement: 60000,
+    creditScoreMin: 700,
+    foreignExchangeFee: "2.5%",
+    bestCategory: "Travel Booking",
+    cardGradient: "from-emerald-600 to-teal-800",
+    cardLabel: "FIRST CLASS",
+    cardNumber: "•••• •••• •••• 7720",
+    cardIcon: "flight_takeoff",
+  },
+  {
+    id: "cibc-dividend",
+    name: "CIBC Dividend Visa Infinite",
+    issuer: "CIBC",
+    category: "Cash Back",
+    annualFee: 99,
+    welcomeBonus: "$200 back",
+    welcomeBonusValue: 200,
+    rewardRates: {
+      groceries: 0.04,
+      gas: 0.04,
+      dining: 0.02,
+      travel: 0.01,
+      other: 0.01,
+    },
+    rewardType: "cashback",
+    incomeRequirement: 60000,
+    creditScoreMin: 660,
+    foreignExchangeFee: "2.5%",
+    bestCategory: "Groceries & Gas",
+    cardGradient: "from-rose-600 to-rose-900",
+    cardLabel: "DIVIDEND",
+    cardNumber: "•••• •••• •••• 5590",
+    cardIcon: "redeem",
+  },
+  {
+    id: "tangerine-money-back",
+    name: "Tangerine Money-Back Credit Card",
+    issuer: "TANGERINE",
+    category: "No Fee Cash Back",
+    annualFee: 0,
+    welcomeBonus: "10% back (60 days)",
+    welcomeBonusValue: 100,
+    rewardRates: {
+      groceries: 0.02,
+      gas: 0.02,
+      dining: 0.02,
+      travel: 0.005,
+      other: 0.005,
+    },
+    rewardType: "cashback",
+    incomeRequirement: 0,
+    creditScoreMin: 600,
+    foreignExchangeFee: "2.5%",
+    bestCategory: "No-Fee Flexibility",
+    cardGradient: "from-orange-500 to-orange-700",
+    cardLabel: "MONEY-BACK",
+    cardNumber: "•••• •••• •••• 2244",
+    cardIcon: "savings",
+  },
+  {
+    id: "bmo-cashback-elite",
+    name: "BMO CashBack Elite Mastercard",
+    issuer: "BMO",
+    category: "Cash Back",
+    annualFee: 120,
+    welcomeBonus: "$300 back",
+    welcomeBonusValue: 300,
+    rewardRates: {
+      groceries: 0.05,
+      gas: 0.02,
+      dining: 0.04,
+      travel: 0.01,
+      other: 0.01,
+    },
+    rewardType: "cashback",
+    incomeRequirement: 80000,
+    creditScoreMin: 700,
+    foreignExchangeFee: "2.5%",
+    bestCategory: "Grocery & Dining",
+    cardGradient: "from-blue-800 to-indigo-900",
+    cardLabel: "ELITE",
+    cardNumber: "•••• •••• •••• 6678",
+    cardIcon: "diamond",
+  },
+];
