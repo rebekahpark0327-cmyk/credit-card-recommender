@@ -122,10 +122,18 @@ export default function ComparisonTable() {
                       className="p-6 min-w-[220px] border-b border-slate-200"
                     >
                       <div className="flex flex-col gap-3">
-                        <div className="w-24 h-16 rounded-lg shadow-inner overflow-hidden">
-                          <div
-                            className={`w-full h-full bg-gradient-to-br ${card.cardGradient}`}
-                          />
+                        <div className="w-28 h-18 rounded-lg shadow-inner overflow-hidden flex items-center justify-center bg-slate-100">
+                          {card.imageUrl ? (
+                            <img
+                              src={card.imageUrl}
+                              alt={card.name}
+                              className="w-full h-full object-contain"
+                            />
+                          ) : (
+                            <div
+                              className={`w-full h-full bg-gradient-to-br ${card.cardGradient}`}
+                            />
+                          )}
                         </div>
                         <span className="font-bold text-slate-900">
                           {card.name.split(" ").slice(0, 2).join(" ")}
@@ -198,13 +206,17 @@ export default function ComparisonTable() {
                   <td className="p-6" />
                   {comparisonCards.map((card) => (
                     <td key={card.id} className="p-6">
-                      <motion.button
+                      <motion.a
+                        href={card.applyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.97 }}
-                        className="w-full py-3 px-4 bg-primary text-white rounded-lg font-bold text-sm hover:brightness-110 transition-all shadow-md"
+                        className="w-full py-3 px-4 bg-primary text-white rounded-lg font-bold text-sm hover:brightness-110 transition-all shadow-md flex items-center justify-center gap-1"
                       >
                         Apply Now
-                      </motion.button>
+                        <span className="material-symbols-outlined text-sm">open_in_new</span>
+                      </motion.a>
                     </td>
                   ))}
                 </tr>

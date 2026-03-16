@@ -266,16 +266,12 @@ export default function SpendingForm({ onSubmit }: SpendingFormProps) {
 
         <div className="px-8 pb-10">
           <div className="bg-primary/5 rounded-xl p-6 border border-primary/20 flex flex-col md:flex-row items-center gap-6">
-            <div className="w-full md:w-1/3 aspect-[1.58/1] rounded-lg relative overflow-hidden flex items-center justify-center">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary to-blue-400 opacity-90" />
-              <div className="relative text-white flex flex-col items-center">
-                <span className="material-symbols-outlined text-4xl mb-1">
-                  credit_card
-                </span>
-                <span className="text-[10px] font-bold tracking-widest uppercase opacity-80">
-                  Elite Rewards
-                </span>
-              </div>
+            <div className="w-full md:w-1/3 rounded-lg overflow-hidden flex items-center justify-center bg-slate-100">
+              <img
+                src="/cards/rbc-avion.png"
+                alt="RBC Avion Visa Infinite"
+                className="w-full h-auto object-contain rounded-lg"
+              />
             </div>
             <div className="flex-1 space-y-2">
               <span className="inline-block px-3 py-1 bg-primary/20 text-primary text-[10px] font-bold uppercase tracking-wider rounded-full">

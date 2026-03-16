@@ -88,31 +88,25 @@ export default function Hero() {
             <div className="absolute -top-10 -right-10 w-64 h-64 bg-primary/20 rounded-full blur-3xl" />
             <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
-              <div className="bg-gradient-to-br from-primary via-indigo-700 to-slate-900 aspect-[16/10] flex flex-col items-center justify-center p-12">
-                <div className="flex gap-6 items-end">
+              <div className="bg-gradient-to-br from-primary via-indigo-700 to-slate-900 aspect-[16/10] flex flex-col items-center justify-center p-8 lg:p-12">
+                <div className="flex gap-4 lg:gap-6 items-end">
                   {[
-                    { gradient: "from-slate-800 to-black", rotate: "-rotate-6" },
-                    { gradient: "from-primary to-indigo-900", rotate: "" },
-                    { gradient: "from-emerald-600 to-emerald-900", rotate: "rotate-6" },
+                    { img: "/cards/amex-cobalt.png", rotate: "-rotate-6", alt: "Amex Cobalt" },
+                    { img: "/cards/scotiabank-gold.png", rotate: "", alt: "Scotiabank Gold" },
+                    { img: "/cards/td-cashback.png", rotate: "rotate-6", alt: "TD Cash Back" },
                   ].map((card, i) => (
                     <motion.div
                       key={i}
-                      className={`w-40 h-24 rounded-xl shadow-2xl bg-gradient-to-br ${card.gradient} ${card.rotate} p-4 flex flex-col justify-between border border-white/10`}
+                      className={`${card.rotate} rounded-xl shadow-2xl overflow-hidden border border-white/20`}
                       initial={{ y: 20, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ delay: 0.5 + i * 0.15 }}
                     >
-                      <div className="flex justify-between items-start">
-                        <span className="material-symbols-outlined text-white/80 text-sm">
-                          credit_card
-                        </span>
-                        <span className="text-[8px] font-bold text-white/50 tracking-widest">
-                          {["VISA", "AMEX", "MC"][i]}
-                        </span>
-                      </div>
-                      <div className="text-[7px] text-white/60 font-mono tracking-widest">
-                        •••• {["8821", "3301", "1105"][i]}
-                      </div>
+                      <img
+                        src={card.img}
+                        alt={card.alt}
+                        className="w-32 lg:w-44 h-auto object-contain"
+                      />
                     </motion.div>
                   ))}
                 </div>

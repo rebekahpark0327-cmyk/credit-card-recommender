@@ -106,7 +106,7 @@ export function getRecommendations(
     })
     .sort((a, b) => b.matchScore - a.matchScore);
 
-  return results.slice(0, 3);
+  return results;
 }
 
 function generateMatchReason(

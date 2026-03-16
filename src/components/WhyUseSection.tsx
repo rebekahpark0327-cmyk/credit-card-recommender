@@ -64,15 +64,19 @@ export default function WhyUseSection() {
                   <span className="text-primary font-bold">#1 Match</span>
                 </div>
                 <div className="flex gap-4 items-center">
-                  <div className="w-24 h-16 rounded-lg overflow-hidden shrink-0">
-                    <div className="w-full h-full bg-gradient-to-br from-primary to-indigo-900" />
+                  <div className="w-24 h-16 rounded-lg overflow-hidden shrink-0 bg-slate-100 flex items-center justify-center">
+                    <img
+                      src="/cards/scotiabank-gold.png"
+                      alt="Scotiabank Gold American Express"
+                      className="w-full h-full object-contain"
+                    />
                   </div>
                   <div className="flex flex-col">
                     <span className="font-bold text-slate-900">
-                      World Elite Mastercard
+                      Scotiabank Gold Amex
                     </span>
                     <span className="text-sm text-slate-500">
-                      Earn 4% on Groceries
+                      Earn 6x on Groceries
                     </span>
                   </div>
                 </div>

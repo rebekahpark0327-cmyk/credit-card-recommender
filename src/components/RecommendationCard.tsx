@@ -9,6 +9,25 @@ interface RecommendationCardProps {
   index: number;
 }
 
+const issuerColors: Record<string, string> = {
+  "American Express": "text-primary",
+  RBC: "text-red-600",
+  TD: "text-emerald-600",
+  Scotiabank: "text-amber-600",
+  CIBC: "text-rose-600",
+  Tangerine: "text-orange-600",
+  BMO: "text-blue-700",
+  "Rogers Bank": "text-red-600",
+  MBNA: "text-amber-700",
+  "PC Financial": "text-red-600",
+  "Canadian Tire": "text-red-600",
+  "National Bank": "text-red-600",
+  HSBC: "text-red-600",
+  "Capital One": "text-blue-700",
+  "Neo Financial": "text-blue-600",
+  "Home Trust": "text-teal-600",
+};
+
 export default function RecommendationCard({
   result,
   rank,
@@ -20,16 +39,6 @@ export default function RecommendationCard({
     99,
     Math.max(70, Math.round(85 + netValue / 100))
   );
-
-  const issuerColor: Record<string, string> = {
-    "AMERICAN EXPRESS": "text-primary",
-    "RBC ROYAL BANK": "text-red-600",
-    "TD CANADA TRUST": "text-emerald-600",
-    SCOTIABANK: "text-amber-600",
-    CIBC: "text-rose-600",
-    TANGERINE: "text-orange-600",
-    BMO: "text-blue-700",
-  };
 
   return (
     <motion.div
@@ -54,32 +63,42 @@ export default function RecommendationCard({
       </div>
 
       <div className="lg:w-1/3 p-8 flex items-center justify-center bg-slate-50">
-        <div
-          className={`w-full max-w-[300px] aspect-[1.58/1] rounded-xl shadow-2xl bg-gradient-to-br ${card.cardGradient} p-6 flex flex-col justify-between text-white relative overflow-hidden`}
-        >
-          <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-3xl" />
-          <div className="flex justify-between items-start">
-            <span className="material-symbols-outlined text-3xl opacity-80">
-              {card.cardIcon}
-            </span>
-            <span className="text-xs font-bold tracking-widest opacity-60">
-              {card.cardLabel}
-            </span>
+        {card.imageUrl ? (
+          <div className="w-full max-w-[300px] flex items-center justify-center">
+            <img
+              src={card.imageUrl}
+              alt={card.name}
+              className="w-full h-auto rounded-xl shadow-2xl object-contain"
+            />
           </div>
-          <div className="space-y-1">
-            <div className="h-8 w-12 bg-yellow-600/20 rounded border border-yellow-600/40" />
-            <div className="text-sm font-mono tracking-widest opacity-80">
-              {card.cardNumber}
+        ) : (
+          <div
+            className={`w-full max-w-[300px] aspect-[1.58/1] rounded-xl shadow-2xl bg-gradient-to-br ${card.cardGradient} p-6 flex flex-col justify-between text-white relative overflow-hidden`}
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-3xl" />
+            <div className="flex justify-between items-start">
+              <span className="material-symbols-outlined text-3xl opacity-80">
+                credit_card
+              </span>
+              <span className="text-xs font-bold tracking-widest opacity-60 uppercase">
+                {card.network}
+              </span>
+            </div>
+            <div className="space-y-1">
+              <div className="h-8 w-12 bg-yellow-600/20 rounded border border-yellow-600/40" />
+              <div className="text-xs font-semibold opacity-80 truncate">
+                {card.name.split(" ").slice(0, 3).join(" ")}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
 
       <div className="lg:w-2/3 p-8 flex flex-col">
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-1">
             <span
-              className={`${issuerColor[card.issuer] ?? "text-slate-600"} font-bold text-sm tracking-wide`}
+              className={`${issuerColors[card.issuer] ?? "text-slate-600"} font-bold text-sm tracking-wide`}
             >
               {card.issuer}
             </span>
@@ -149,7 +168,10 @@ export default function RecommendationCard({
         </div>
 
         <div className="flex flex-wrap gap-3 mt-auto">
-          <motion.button
+          <motion.a
+            href={card.applyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             className={`flex-1 min-w-[140px] font-bold py-3 px-6 rounded-lg transition-all flex items-center justify-center gap-2 ${
@@ -159,12 +181,10 @@ export default function RecommendationCard({
             }`}
           >
             Apply Now
-            {isTopPick && (
-              <span className="material-symbols-outlined text-sm">
-                open_in_new
-              </span>
-            )}
-          </motion.button>
+            <span className="material-symbols-outlined text-sm">
+              open_in_new
+            </span>
+          </motion.a>
           <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
